@@ -1,12 +1,17 @@
 const path = require('path')
 
-module.exports = function override(config) {
-  config.module.rules.push({
-    enforce: 'pre',
-    test: /\.(js|s?[ca]ss)$/,
-    loader: 'import-glob',
-  })
-  config.resolve = {
+module.exports = function (config) {
+  const newConfig = config
+
+  newConfig.module.rules = [
+    ...config.module.rules,
+    {
+      enforce: 'pre',
+      test: /\.(js|s?[ca]ss)$/,
+      loader: 'import-glob',
+    },
+  ]
+  newConfig.resolve = {
     ...config.resolve,
     alias: {
       components: path.resolve(__dirname, 'src/components'),
@@ -15,5 +20,5 @@ module.exports = function override(config) {
     },
   }
 
-  return config
+  return newConfig
 }
