@@ -16,6 +16,7 @@ module.exports = function (config) {
     alias: {
       components: path.resolve(__dirname, 'src/components'),
       reducers: path.resolve(__dirname, 'src/reducers'),
+      actions: path.resolve(__dirname, 'src/actions'),
       src: path.resolve(__dirname, 'src'),
     },
   }

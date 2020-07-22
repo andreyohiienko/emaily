@@ -4,7 +4,9 @@
         "paths": {
             "components/*": ["./src/components/*"],
             "reducers/*": ["./src/reducers/*"],
-            "reducers": ["./src/reducers"]
+            "reducers": ["./src/reducers"],
+            "actions/*": ["./src/actions/*"],
+            "actions": ["./src/actions"]
         },
         "module": "commonjs",
         "target": "es6"
