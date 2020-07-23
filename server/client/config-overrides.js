@@ -3,18 +3,23 @@ const path = require('path')
 module.exports = function (config) {
   const newConfig = config
 
-  newConfig.module.rules.push({
-    enforce: 'pre',
-    test: /\.(js|s?[ca]ss)$/,
-    loader: 'import-glob',
-  })
-  newConfig.resolve.alias['components'] = path.resolve(
-    __dirname,
-    'src/components',
-  )
-  newConfig.resolve.alias['reducers'] = path.resolve(__dirname, 'src/reducers')
-  newConfig.resolve.alias['actions'] = path.resolve(__dirname, 'src/actions')
-  newConfig.resolve.alias['src'] = path.resolve(__dirname, 'src')
+  newConfig.module.rules = [
+    ...config.module.rules,
+    {
+      enforce: 'pre',
+      test: /\.(js|s?[ca]ss)$/,
+      loader: 'import-glob',
+    },
+  ]
+  newConfig.resolve = {
+    ...config.resolve,
+    alias: {
+      components: path.resolve(__dirname, 'src/components'),
+      reducers: path.resolve(__dirname, 'src/reducers'),
+      actions: path.resolve(__dirname, 'src/actions'),
+      src: path.resolve(__dirname, 'src'),
+    },
+  }
 
   return newConfig
 }
