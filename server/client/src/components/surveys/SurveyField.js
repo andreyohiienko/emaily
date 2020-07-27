@@ -2,10 +2,11 @@
 // label and text input
 import React from 'react'
 
-export default () => {
+export default ({ input }) => {
+  console.log('props', props)
   return (
     <div>
-      <input type="text" />
+      <input {...input} type="text" />
     </div>
   )
 }
