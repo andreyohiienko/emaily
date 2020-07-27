@@ -15,7 +15,7 @@ module.exports = (app) => {
       subject,
       body,
       recipients: recipients.split(',').map((email) => ({
-        email,
+        email: email.trim(),
       })),
       _user: req.user.id,
       dateSent: Date.now(),
@@ -23,5 +23,9 @@ module.exports = (app) => {
 
     // Great place to send an email!
     const mailer = new Mailer(survey, surveyTemplate(survey))
+    mailer
+      .send()
+      .then()
+      .catch((err) => console.log('err', err.response.body))
   })
 }
