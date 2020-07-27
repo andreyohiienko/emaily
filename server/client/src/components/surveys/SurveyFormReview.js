@@ -1,21 +1,22 @@
 // SurveyFormReview shows users their form inputs for review
 import React from 'react'
 import { connect } from 'react-redux'
+import _ from 'lodash'
 import formFields from './formFields'
 
-const SurveyFormReview = ({
-  onCancel,
-  formValues: { title, subject, body },
-}) => {
+const SurveyFormReview = ({ onCancel, formValues }) => {
+  const reveiewFields = _.map(formFields, ({ label, name }) => {
+    return (
+      <div key={name}>
+        <label>{label}</label>
+        <div>{formValues[name]}</div>
+      </div>
+    )
+  })
   return (
     <div>
       <h5>Please confirm your entries</h5>
-      <div>
-        <div>
-          <label>Survey Title</label>
-          <div>{title}</div>
-        </div>
-      </div>
+      {reveiewFields}
       <button className="yellow darken-3 btn-flat" onClick={onCancel}>
         Back
       </button>
